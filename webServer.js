@@ -18,6 +18,7 @@ const databaseAndCollection = {db: process.env.MONGO_DB_NAME, collection: proces
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = `mongodb+srv://${username}:${password}@cluster0.abikxxc.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+const siteUrl = "https://bmi-calculator-6i9h.onrender.com";
 
 app.get("/", (request, response) => {
     /* renders the home page: index.ejs */
@@ -26,7 +27,7 @@ app.get("/", (request, response) => {
 
 app.get("/insertData", (request, response) => {
     /* renders insert.ejs and passes form action */
-	let formAction = `"http://localhost:${[portNumber]}/processedData"`;
+	let formAction = `"${siteUrl}/processedData"`;
 	response.render("insert", { formAction });
 });
 
@@ -44,8 +45,8 @@ app.post("/processedData", (request, response) => {
 
 app.get("/query", (request, response) => {
     /* renders review.ejs and passes form action */
-	let action = `"http://localhost:${[portNumber]}/processQuery"`;
-	response.render("review", { action });
+	let formAction = `"${siteUrl}/processQuery"`;
+	response.render("review", { formAction });
 });
 
 app.post("/processQuery", async (request, response) => {
