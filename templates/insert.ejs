@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Data Collection</title>
+    <script>
+        function unitsImp(x) {
+            if(x.checked) {
+                document.getElementById("wUnit").innerHTML = "lb";
+                document.getElementById("hUnit1").innerHTML = "ft";
+                document.getElementById("h2").style.visibility = "visible";
+            }
+        }
+        function unitsM(x) {
+            if(x.checked) {
+                document.getElementById("wUnit").innerHTML = "kg";
+                document.getElementById("hUnit1").innerHTML = "cm";
+                document.getElementById("h2").style.visibility = "hidden";
+            }
+        }
+    </script>
+</head>
+
+<body>
+	<h1>Enter your information</h1>
+	<form action=<%- formAction %> method="post" onSubmit="return confirm('Ensure the user info you entered is correct!\nYou will be able to update physical data later.')">
+        
+        <fieldset>
+            <legend>
+                <strong>&nbsp; User Info &nbsp;</strong>
+            </legend>
+
+            <label>Name:
+                <input type="text" name="name" autofocus required>
+            </label>
+            &nbsp; &nbsp; &nbsp;
+            <label>Email:
+                <input type="email" name="email" required>
+            </label> <br>
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+            <legend>
+                <strong>&nbsp; Physical Data &nbsp;</strong>
+            </legend>
+            
+            Choose a unit system:
+                <label><input type="radio" id="imp" name="unit" value="imperial" onchange="unitsImp(this)" checked>Imperial</label>
+                <label><input type="radio" id="met" name="unit" value="metric" onchange="unitsM(this)">Metric</label>
+            <br><div id="dataFields"><br>
+                <label>Weight:
+                    <input type="number" name="weight" min="1" max="600" required> <span id="wUnit">lb</span>
+                </label>
+                <br><br>
+                <label>Height:
+                    <input type="number" name="height1" min="2" max="7" required> <span id="hUnit1">ft</span>
+                </label>&nbsp;<span id="h2"><input type="number" name="height2" min="0" max="11" required> in</span></div>
+        </fieldset>
+        <br>      
+        <input type="reset" value="Reset Values"/>
+		<input type="submit" value="Submit Data"/>
+	</form>
+    <hr>
+    <a href="/">HOME</a>
+</body>
+
+</html>
