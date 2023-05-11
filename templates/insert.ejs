@@ -48,18 +48,18 @@
             </legend>
             
             Choose a unit system:
-                <label><input type="radio" id="imp" name="unit" value="imperial" onchange="unitsImp(this)" checked>Imperial</label>
-                <label><input type="radio" id="met" name="unit" value="metric" onchange="unitsM(this)">Metric</label>
-            <br><div id="dataFields"><br>
-                <label>Weight:
-                    <input type="number" name="weight" min="1" max="600" required> <span id="wUnit">lb</span>
-                </label>
-                <br><br>
-                <label>Height:
-                    <input type="number" name="height1" min="2" max="7" required> <span id="hUnit1">ft</span>
-                </label>&nbsp;<span id="h2"><input type="number" name="height2" min="0" max="11" required> in</span></div>
+            <label><input type="radio" id="imp" name="unit" value="imperial" onchange="unitsImp(this)" checked>Imperial</label>
+            <label><input type="radio" id="met" name="unit" value="metric" onchange="unitsM(this)">Metric</label>
+           <br><div id="dataFields"><br>
+            <label>Weight:
+                <input type="number" name="weight" min="1" max="600" required> <span id="wUnit">lb</span>
+            </label>
+            <br><br>
+            <label>Height:
+                <input type="number" name="height1" min="1" max="900" required> <span id="hUnit1">ft</span>
+            </label>&nbsp;<span id="h2"><input type="number" name="height2" min="0" max="11"> in</span></div>
         </fieldset>
-        <br>      
+        <br>
         <input type="reset" value="Reset Values"/>
 		<input type="submit" value="Submit Data"/>
 	</form>

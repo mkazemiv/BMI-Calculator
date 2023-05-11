@@ -4,17 +4,25 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Confirmation</title>
+    <script>
+        function adjustUnits() {
+            if ("<%- unit %>" === "metric") {
+                document.getElementById("wUnit").innerHTML = "kg";
+                document.getElementById("hUnit").innerHTML = "m";
+            }
+        }
+    </script>
 </head>
 
-<body>
+<body onload="adjustUnits()">
 	<h1>Data Submitted</h1>
 
 	<strong>Name:</strong> <%- name %><br>
     <strong>Email Address:</strong> <%- email %><br>
-    <strong>Weight:</strong> <%- weight %> lb<br>
-    <strong>Height:</strong> <%- height %> in<br>
+    <strong>Weight:</strong> <%- weight %> <span id="wUnit">lb</span><br>
+    <strong>Height:</strong> <%- height %> <span id="hUnit">in</span><br>
     <strong>BMI:</strong> <%- bmi %><br>
-    <strong>Weight Category: </strong>
+    <strong>Weight Category:</strong> <%- weightCategory %>
     <hr>
     <a href="/">HOME</a>
 </body>
