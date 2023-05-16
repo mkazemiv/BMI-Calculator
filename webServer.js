@@ -27,7 +27,7 @@ app.get("/", (request, response) => {
 
 app.get("/insertData", (request, response) => {
     /* renders insert.ejs and passes form action */
-	let formAction = `"${siteUrl}/processedData"`;
+	let formAction = `${siteUrl}/processedData`;
 	response.render("insert", { formAction });
 });
 
@@ -49,7 +49,7 @@ app.post("/processedData", (request, response) => {
 
 app.get("/query", (request, response) => {
     /* renders lookup.ejs and passes form action */
-	let formAction = `"${siteUrl}/queryResult"`;
+	let formAction = `${siteUrl}/queryResult`;
 	response.render("lookup", { formAction });
 });
 
