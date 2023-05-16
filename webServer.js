@@ -33,44 +33,49 @@ app.get("/insertData", (request, response) => {
 
 app.post("/processedData", (request, response) => {
     /* renders processed.ejs and processes form data */
-	let { name, email, unit, weight, height1, height2 } = request.body;
+	let { name, email, unit, weight, height1, height2, flag } = request.body;
     weight = parseInt(weight)
     const data = { name, email, unit, weight, height1, height2 }
     
     let bmiData = calculateBMI(data)
     bmiData.then( function (result) {
+        if (flag === "newProfile")
+            addtoDB(result);
+        else if (flag === "update")
+            updateProfile(result)
         response.render("processed", result);
     })
 });
 
 app.get("/query", (request, response) => {
-    /* renders review.ejs and passes form action */
-	let formAction = `"${siteUrl}/processQuery"`;
-	response.render("review", { formAction });
+    /* renders lookup.ejs and passes form action */
+	let formAction = `"${siteUrl}/queryResult"`;
+	response.render("lookup", { formAction });
 });
 
-app.post("/processQuery", async (request, response) => {
-    /* renders queryResult.ejs and queries db */
-	let { name, email } = request.body;
-    let filter = { name: name, email: email };
+app.post("/queryResult", async (request, response) => {
+    /* renders profile.ejs and queries db */
+	let { qName, qEmail } = request.body;
+    let filter = { name: qName, email: qEmail };
 
-    /* finding application by name & email in db using findOne() */
+    /* finding application by name & email in db */
     try {
         await client.connect();
         const result = await client.db(databaseAndCollection.db)
                                    .collection(databaseAndCollection.collection)
                                    .findOne(filter);
-
-        // /* retrieving properties from promise result */
-        // console.log(result)
-        // let { name, email, unit, weight, height, bmi } = result
-        // if (bmi == bmi.toFixed(1))
-        //     bmi = bmi.toFixed(1)
-        // else
-        //     bmi = bmi.toFixed(2)
-        // /* putting variables together and passing to rendered page */
-        // return { name, email, unit, weight, height, bmi };
-        response.render("queryResult", result);
+        if (!result)
+            /* if no result was found then render error.ejs */
+            response.render("error", {});
+        else {
+            /* otherwise, render profile.ejs with the user's info and formAction in case of update */
+            if (result.bmi == result.bmi.toFixed(1))
+                result.bmi = result.bmi.toFixed(1)
+            else
+                result.bmi = result.bmi.toFixed(2)
+            result.formAction = `${siteUrl}/processedData`;
+            response.render("profile", result);
+        }
     } catch (e) {
         console.error(e);
     } finally {
@@ -79,7 +84,7 @@ app.post("/processQuery", async (request, response) => {
 });
 
 app.listen(portNumber);
-console.log("Web server is running");
+console.log(`Web server is running at ${siteUrl}/`);
 
 async function calculateBMI (data) {
     /* Using 'Body Mass Index (BMI) Calculator' from Rapid API */
@@ -87,12 +92,12 @@ async function calculateBMI (data) {
 
     /* compute height depending on unit system */
     let height = parseInt(data.height1)*12 + parseInt(data.height2);
-    if (data.unit === "metric")
+    if (data.unit === "metric") {
         height = parseFloat(data.height1)/100;
+        delete data.height2;
+    }
     
-    /* adjust 'data' object properties */
-    delete data.height1;
-    delete data.height2;
+    /* add 'height' property to data */
     data.height = height;
 
     /* API fetch request url and options for BMI calculation */
@@ -101,7 +106,7 @@ async function calculateBMI (data) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '02d54c8c17msh5b44485dc9353bcp1bdadejsndbf4c76be4b5',
+            'X-RapidAPI-Key': '4d23b1b5damsh2668f2d8f36a6b7p120e88jsn4bc679857bfd',
             'X-RapidAPI-Host': 'body-mass-index-bmi-calculator.p.rapidapi.com'
         }
     }
@@ -120,12 +125,6 @@ async function calculateBMI (data) {
             const result = await response.text();
             const obj = JSON.parse(result.toString());
             data.weightCategory = obj.weightCategory;
-
-            /* inserting data into db using insertOne() */
-            await client.connect();
-            await client.db(databaseAndCollection.db)
-                        .collection(databaseAndCollection.collection)
-                        .insertOne(data);
         } catch (e) {
             console.error(e);
         } finally {
@@ -138,11 +137,25 @@ async function calculateBMI (data) {
     return data;
 }
 
-async function updateData (data) {    
+async function addtoDB(data) {
     try {
-        /* updating data in db w/ weightCategory using updateOne() */
+        /* inserting data into db */
         await client.connect();
-        let update = { $set: { weightCategory: obj.weightCategory} }
+        await client.db(databaseAndCollection.db)
+                    .collection(databaseAndCollection.collection)
+                    .insertOne(data);
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close();
+    }
+}
+
+async function updateProfile (data) {
+    try {
+        /* updating profile in db with new data */
+        await client.connect();
+        let update = { $set: data }
         let filter = { name: data.name, email: data.email };
         await client.db(databaseAndCollection.db)
                     .collection(databaseAndCollection.collection)
@@ -152,30 +165,4 @@ async function updateData (data) {
     } finally {
         await client.close()
     }
-
-    return data;
 }
-
-/*
-async function lookupData(data) {
-    try {
-        await client.connect();
-        let filter = { name: data.name, email: data.email };
-        const result = await client.db(databaseAndCollection.db)
-                           .collection(databaseAndCollection.collection)
-                           .findOne(filter);
-        // retrieving properties from promise result /
-        console.log(result)
-        let { name, email, unit, weight, height, bmi } = result
-        if (bmi == bmi.toFixed(1))
-            bmi = bmi.toFixed(1)
-        else
-            bmi = bmi.toFixed(2)
-        /* putting variables together and passing to rendered page /
-        return { name, email, unit, weight, height, bmi };
-    } catch (e) {
-        console.error(e);
-    } finally {
-        await client.close()
-    }
-}*/
