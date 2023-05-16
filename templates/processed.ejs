@@ -9,7 +9,8 @@
             if ("<%- unit %>" === "metric") {
                 document.getElementById("wUnit").innerHTML = "kg";
                 document.getElementById("hUnit").innerHTML = "cm";
-            }
+            } else
+                document.getElementById("h2").innerText = " <%- height2 %> in";
         }
     </script>
 </head>
@@ -21,7 +22,7 @@
     <strong>Email Address:</strong> <%- email %><br>
     <br>
     <strong>Weight:</strong> <%- weight %> <span id="wUnit">lb</span><br>
-    <strong>Height:</strong> <%- height1 %> <span id="hUnit">in</span><br>
+    <strong>Height:</strong> <%- height1 %> <span id="hUnit">ft</span><span id="h2"></span><br>
     <br>
     <strong>BMI:</strong> <%- bmi %><br>
     <strong>Weight Category:</strong> <%- weightCategory %>
