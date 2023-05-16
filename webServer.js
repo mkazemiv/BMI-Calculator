@@ -18,7 +18,8 @@ const databaseAndCollection = {db: process.env.MONGO_DB_NAME, collection: proces
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = `mongodb+srv://${username}:${password}@cluster0.abikxxc.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-const siteUrl = "https://bmi-calculator-6i9h.onrender.com";
+const siteUrl = "http://localhost:5000"
+// "https://bmi-calculator-6i9h.onrender.com";
 
 app.get("/", (request, response) => {
     /* renders the home page: index.ejs */
