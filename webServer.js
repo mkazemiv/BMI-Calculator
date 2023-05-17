@@ -54,7 +54,7 @@ app.post("/processedData", (request, response) => {
 app.get("/query", (request, response) => {
     /* renders lookup.ejs and passes form action */
 	let formAction = `${siteUrl}/queryResult`;
-	response.render("lookup", { formAction });
+	response.render("lookup", { formAction, flag: "query" });
 });
 
 app.post("/queryResult", async (request, response) => {
@@ -80,6 +80,40 @@ app.post("/queryResult", async (request, response) => {
             /* adding formAction for processedData endpoint, used in case of update */
             result.formAction = `${siteUrl}/processedData`;
             response.render("profile", result);
+        }
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close()
+    }
+});
+
+app.get("/deleteProfile", (request, response) => {
+    /* renders lookup.ejs, passes form action and 'delete' flag */
+	let formAction = `${siteUrl}/confirmDelete`;
+	response.render("lookup", { formAction, flag: "delete" });
+});
+
+app.post("/confirmDelete", async (request, response) => {
+    /* renders delete.ejs and queries db */
+	let { qName, qEmail } = request.body;
+    let filter = { name: qName, email: qEmail };
+
+    /* finding application by name & email in db */
+    try {
+        await client.connect();
+        const result = await client.db(databaseAndCollection.db)
+                                   .collection(databaseAndCollection.collection)
+                                   .findOne(filter);
+        if (!result)
+            /* if no result was found then render error.ejs */
+            response.render("error", {});
+        else {
+            /* otherwise, delete */
+            await client.db(databaseAndCollection.db)
+                        .collection(databaseAndCollection.collection)
+                        .deleteOne(filter);
+            response.render("error", {});
         }
     } catch (e) {
         console.error(e);
