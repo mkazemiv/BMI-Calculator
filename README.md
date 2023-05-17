@@ -2,7 +2,7 @@
 
 ### Team Members
  * Fatima Chariwala (fchariwa)
- * Mohammad A. Kazemivarnamkhasti
+ * Mohammad A. Kazemivarnamkhasti (mkazemiv)
 
 ### App Description
 
