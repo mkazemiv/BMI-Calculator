@@ -174,7 +174,7 @@ async function calculateBMI (data) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'd3f5b2bc15mshbe780db7a6b7513p1cf674jsn0adaed7f512a',
+            'X-RapidAPI-Key': '2ef1e07f77msh4b3d79815902ec9p17b208jsna599bfed8636',
             'X-RapidAPI-Host': 'body-mass-index-bmi-calculator.p.rapidapi.com'
         }
     }
@@ -182,6 +182,7 @@ async function calculateBMI (data) {
     try {
         /* fetch BMI calculation result from API, adding BMI to data */
         const response = await fetch(url, options);
+        
         const result = await response.text();
         const obj = JSON.parse(result.toString());
         data.bmi = +obj.bmi.toFixed(2);
