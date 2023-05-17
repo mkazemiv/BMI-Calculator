@@ -5,13 +5,25 @@
 	<meta charset="UTF-8"/>
 	<title>Query Error</title>
 	<link rel="stylesheet" href="/templates/errorStyle.css" type="text/css">
+	<script>
+		function adjustText() {
+			alert("inside adjustText()")
+			if ("<%- flag %>" === "deleted") {
+				alert("flag is: <%- flag %>")
+				document.title = "Delete Success"
+				document.getElementById("h2").innerHTML = "Profile deleted successfully &#128526;";
+				document.getElementById("h1").style.display = "none"
+			} else
+				document.getElementById("h2").innerHTML = "No user found with given credentials &#128531;";
+		}
+	</script>
 </head>
 
-<body>
-	<h1>Oops...</h1>
+<body onload="adjustText()">
+	<h1 id="h1">Oops...</h1>
 	<div id = "m0">
 	<div id ="m1">
-	<h2>No user found with given credentials &#128531;</h2>
+	<h2 id="h2">No user found with given credentials &#128531;</h2>
 
 	<h4>You may try to:</h4>
 	<ul>
