@@ -7,9 +7,7 @@
 	<link rel="stylesheet" href="/templates/errorStyle.css" type="text/css">
 	<script>
 		function adjustText() {
-			alert("inside adjustText()")
 			if ("<%- flag %>" === "deleted") {
-				alert("flag is: <%- flag %>")
 				document.title = "Delete Success"
 				document.getElementById("h2").innerHTML = "Profile deleted successfully &#128526;";
 				document.getElementById("h1").style.display = "none"
