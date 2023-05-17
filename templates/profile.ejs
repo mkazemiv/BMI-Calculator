@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title><%- name %>'s Profile</title>
+    <script>
+        function adjustFieldsUnits() {
+            document.getElementById("submit").style.visibility = 'hidden';
+            document.getElementById("cancel").style.visibility = 'hidden';
+            if ("<%- unit %>" === "metric") {
+                document.getElementById("wUnit").innerHTML = "kg";
+                document.getElementById("h1").innerHTML = "cm";
+                document.getElementById("h2").value = 0;
+                document.getElementById("h2").style.display = "none";
+            } else
+                document.getElementById("height2").value = `<%- height2 %>`;
+        }
+        function updateData() {
+            document.getElementById("weight").removeAttribute("readonly");
+            document.getElementById("height1").removeAttribute("readonly");
+            document.getElementById("height2").removeAttribute("readonly");
+            document.getElementById("updateBtn").setAttribute("disabled", "");
+            document.getElementById("submit").style.visibility = 'visible';
+            document.getElementById("cancel").style.visibility = 'visible';
+            document.getElementById("upd").innerText = " (edit fields)"
+        }
+        function cancelUpdate() {
+            document.getElementById("weight").setAttribute("readonly", "");
+            document.getElementById("height1").setAttribute("readonly", "");
+            document.getElementById("height2").setAttribute("readonly", "");
+            document.getElementById("updateBtn").removeAttribute("disabled");
+            document.getElementById("submit").style.visibility = 'hidden';
+            document.getElementById("cancel").style.visibility = 'hidden';
+            document.getElementById("upd").innerText = ""
+        }
+        function submitUpdate() {
+            document.getElementById("name").removeAttribute("disabled");
+            // document.getElementById("email").removeAttribute("disabled");
+            let w = document.getElementById("weight").value
+            let h = document.getElementById("height1").value
+            let msg = `Confirm updated physical data\nweight entered: `;
+            if ("<%- unit %>" === "imperial") {
+                w += " lb";
+                msg += `${w}\nheight entered: `;
+                h += ` ft ${document.getElementById("height2").value} in`;
+                msg += h;
+            } else if ("<%- unit %>" === "metric") {
+                w += " kg";
+                msg += `${w}\nheight entered: `;
+                h += " cm";
+                msg += h;
+            }
+            return confirm(msg)
+        }
+    </script>
+</head>
+
+<body onload="adjustFieldsUnits()">
+	<h1>Hi, <%- name %> &#128075;</h1>
+
+    <form action="<%- formAction %>" method="post" onsubmit="return submitUpdate()">
+        <fieldset>
+            <legend>
+                <strong>&nbsp; User Info &nbsp;</strong>
+            </legend>
+
+            <strong>Name:</strong> <input type="text" name="name" id="name" value="<%- name %>" disabled readonly>
+            <br>
+            <strong>Email:</strong> <input type="email" name="email" value="<%- email %>" readonly>
+            <br>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>
+                <strong>&nbsp; Physical Data <span id="upd"></span>&nbsp;</strong>
+            </legend>
+            <!-- hidden unit field, in case of an update -->
+            <input type="hidden" name="unit" id="unit" value="<%- unit %>">
+            <strong>Weight:</strong>
+                <input type="number" name="weight" id="weight" value="<%- weight %>" min="1" max="600" readonly> <span id="wUnit">lb</span>
+            <br><br>
+            <strong>Height:</strong>
+                <input type="number" name="height1" id="height1" value="<%- height1 %>" min="1" max="900" readonly> <span id="h1">ft</span>
+            &nbsp;<span id="h2"><input type="number" name="height2" id="height2" value="" min="0" max="11" readonly> in</span>
+            <br><br>
+            <!-- for distinguishing b/w updates and new insertions -->
+            <input type="hidden" name="flag" value="update">
+            <input type="button" value="Update Data" id="updateBtn" onclick="updateData()"> &nbsp;
+            <input type="submit" value="Submit Update" id="submit"> &nbsp;
+            <input type="button" value="Cancel Update" id="cancel" onclick="cancelUpdate()">
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>
+                <strong>&nbsp; Body Mass Index Data &nbsp;</strong>
+            </legend>
+            
+            <strong>BMI:</strong>
+                <input type="number" name="bmi" value="<%- bmi %>" readonly disabled>
+            <br><br>
+            <strong>Weight Category:</strong>
+                <input type="text" name="weightCategory" value="<%- weightCategory %>" readonly disabled>
+        </fieldset>
+    </form>
+    <br>
+    <hr>
+    <a href="/">HOME</a>
+</body>
+
+</html>

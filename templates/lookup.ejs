@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>User Profile Query</title>
+    </head>
+
+<body>
+	<h1>Enter user info to lookup profile</h1>
+
+	<form action="<%- formAction %>" method="post">
+        <label>Name:
+            <input type="text" name="qName" id="qName" autofocus required>
+        </label>
+        &nbsp;
+        <label>Email:
+            <input type="email" name="qEmail" id="qEmail" required>
+        </label>
+        &nbsp; 
+        <input type="submit" value="Find Profile"/>
+    </form>
+    <hr>
+    <a href="/">HOME</a>
+</body>
+
+</html>
+

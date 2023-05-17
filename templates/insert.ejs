@@ -20,6 +20,9 @@
                 document.getElementById("h2").style.visibility = "hidden";
             }
         }
+        function submitForm() {
+            return confirm('Ensure that User Info and unit system selection are correct!\nYou will only be able to update physical data later.')
+        }
     </script>
 </head>
 
@@ -49,6 +52,8 @@
             <input type="number" name="height1" min="1" max="900" required> <span id="hUnit1">ft&nbsp;&nbsp;</span>
             <span id="h2"><input type="number" name="height2" min="0" max="11"> in</span></div>
         <br>
+        <!-- for distinguishing b/w updates and new insertions -->
+        <input type="hidden" name="flag" value="newProfile">
         <input type="reset" value="Reset Values"/>
 		<input type="submit" value="Submit Data"/>
 	</form>
