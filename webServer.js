@@ -73,6 +73,7 @@ app.post("/queryResult", async (request, response) => {
                 result.bmi = result.bmi.toFixed(1)
             else
                 result.bmi = result.bmi.toFixed(2)
+            /* adding formAction for processedData endpoint, used in case of update */
             result.formAction = `${siteUrl}/processedData`;
             response.render("profile", result);
         }
@@ -94,7 +95,7 @@ async function calculateBMI (data) {
     let height = parseInt(data.height1)*12 + parseInt(data.height2);
     if (data.unit === "metric") {
         height = parseFloat(data.height1)/100;
-        delete data.height2;
+        console.log(data.height2)
     }
     
     /* add 'height' property to data */
