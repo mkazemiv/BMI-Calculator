@@ -57,35 +57,6 @@ app.get("/query", (request, response) => {
 	response.render("lookup", { formAction });
 });
 
-app.get("/searchPage", (request, response) => {
-    /* renders insert.ejs and passes form action */
-	let formAction = `"${siteUrl}/searchResults"`;
-	response.render("searchPage", { formAction });
-});
-
-app.post("/searchPage", (request, response) => {
-    /* renders processed.ejs and processes form data */
-	const queryParams = {
-        q: request.body.sQuery,
-        engine: "google",
-    };
-    let a;
-    const callback = function(data) {
-        a = getData(data["organic_results"]);
-        let vars = {
-            searchData : a
-        };
-        response.render("searchResult", vars);
-      };
-    gClient.json(queryParams, callback);
-      /* console.log(a);
-    let vars = {
-        searchData : a
-    };
-    response.render("searchResult", vars); */
-});
-
-
 app.post("/queryResult", async (request, response) => {
     /* renders profile.ejs and queries db */
 	let { qName, qEmail } = request.body;
@@ -117,7 +88,33 @@ app.post("/queryResult", async (request, response) => {
     }
 });
 
+app.get("/searchPage", (request, response) => {
+    /* renders insert.ejs and passes form action */
+	let formAction = `"${siteUrl}/searchResults"`;
+	response.render("searchPage", { formAction });
+});
 
+app.post("/searchPage", (request, response) => {
+    /* renders processed.ejs and processes form data */
+	const queryParams = {
+        q: request.body.sQuery,
+        engine: "google",
+    };
+    let a;
+    const callback = function(data) {
+        a = getData(data["organic_results"]);
+        let vars = {
+            searchData : a
+        };
+        response.render("searchResult", vars);
+      };
+    gClient.json(queryParams, callback);
+      /* console.log(a);
+    let vars = {
+        searchData : a
+    };
+    response.render("searchResult", vars); */
+});
 
 app.listen(portNumber);
 console.log(`Web server is running at ${siteUrl}/`);
@@ -142,7 +139,7 @@ async function calculateBMI (data) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '4d23b1b5damsh2668f2d8f36a6b7p120e88jsn4bc679857bfd',
+            'X-RapidAPI-Key': 'fba0d86acemsh1efba0a46fa7962p1c0da4jsn4d17ac47822c',
             'X-RapidAPI-Host': 'body-mass-index-bmi-calculator.p.rapidapi.com'
         }
     }
@@ -203,37 +200,13 @@ async function updateProfile (data) {
     }
 }
 
- function getData(data){
+function getData(data) {
     let answer = "<table>";
     data.forEach(element => {
         answer += "<tr><td><a href='" + element.link + "'>" + element.title + "</a></td></tr>";
     });
     answer += "</table>"
-    
+
     return answer;
     //console.log(data["organic_results"][0]);
-  };
-
-/*
-async function lookupData(data) {
-    try {
-        await client.connect();
-        let filter = { name: data.name, email: data.email };
-        const result = await client.db(databaseAndCollection.db)
-                           .collection(databaseAndCollection.collection)
-                           .findOne(filter);
-        // retrieving properties from promise result /
-        console.log(result)
-        let { name, email, unit, weight, height, bmi } = result
-        if (bmi == bmi.toFixed(1))
-            bmi = bmi.toFixed(1)
-        else
-            bmi = bmi.toFixed(2)
-        /* putting variables together and passing to rendered page /
-        return { name, email, unit, weight, height, bmi };
-    } catch (e) {
-        console.error(e);
-    } finally {
-        await client.close()
-    }
-}*/
+};
