@@ -1,6 +1,6 @@
 Team Members:
     • Fatima Chariwala (fchariwa)
-    • Mohammad A. Kazemivarnamkhasti
+    • Mohammad A. Kazemivarnamkhasti (mkazemiv)
 
 App Description:
     Our app allows users to input their phyiscal data (weight & height), which
@@ -21,3 +21,5 @@ API Link(s):
     https://serpapi.com/search-api
 
 YouTube Demo Video:
+     
+    https://youtu.be/_UhT_ysM8Pw
