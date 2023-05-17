@@ -39,7 +39,7 @@ app.post("/processedData", (request, response) => {
     /* renders processed.ejs and processes form data */
 	let { name, email, unit, weight, height1, height2, flag } = request.body;
     weight = parseInt(weight)
-    const data = { name, email, unit, weight, height1, height2 }
+    const data = { name, email, unit, weight, height1, height2}
     
     let bmiData = calculateBMI(data)
     bmiData.then( function (result) {
@@ -56,6 +56,7 @@ app.get("/query", (request, response) => {
 	let formAction = `${siteUrl}/queryResult`;
 	response.render("lookup", { formAction, flag: "query" });
 });
+
 
 app.post("/queryResult", async (request, response) => {
     /* renders profile.ejs and queries db */
