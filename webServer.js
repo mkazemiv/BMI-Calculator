@@ -174,7 +174,7 @@ async function calculateBMI (data) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '2ef1e07f77msh4b3d79815902ec9p17b208jsna599bfed8636',
+            'X-RapidAPI-Key': '760f36d114msh6f047cc01d42f6dp129469jsn9d42a31ca877',
             'X-RapidAPI-Host': 'body-mass-index-bmi-calculator.p.rapidapi.com'
         }
     }
@@ -236,12 +236,11 @@ async function updateProfile (data) {
 }
 
  function getData(data){
-    let answer = "<table border = '2'><tr><th>Title</th><th>Link</th></tr>";
+    let answer = "<table border = '2'>";
     data.forEach(element => {
-        answer += "<tr><td>" + element.title + "</td><td>" + element.link  + "</td></tr>";
+        answer += "<tr><td><a class='lk1' href='" + element.link  + "'>" + element.title + "</a></td></tr>";
     });
     answer += "</table>"
-
     return answer;
     //console.log(data["organic_results"][0]);
 };

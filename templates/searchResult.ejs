@@ -9,7 +9,10 @@
 
 <body>
     <div id = "main1">
-        <div id = "d2"><img src="/templates/images/img1.png">
+        <div id = "d2">
+            <div id = "slides">
+                <div id = "box"><img src="/templates/images/img1.png"></div>
+            </div>
             <div id = "d6">
                 <button><a href="/searchPage">Another search?</a></button><br><br>
                 <button><a href="/">Main Page</a></button>
@@ -21,6 +24,24 @@
         </div>
         
     </div>
+    <script>
+        let myImage = document.getElementById('box');
+
+        let slides = ['/templates/images/img2.png', '/templates/images/img3.png', '/templates/images/img4.png', '/templates/images/img1.png'];
+        let st = 0;
+
+        function animate(){
+            if(st < slides.length){
+                st = st + 1;
+            }
+            else{
+                st = 1;
+            }
+            myImage.innerHTML = "<img src=" + slides[st - 1] + ">";
+        
+        }
+            setInterval(animate,2500);
+        </script>
     
 </body>
 </html>
