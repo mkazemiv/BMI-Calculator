@@ -51,6 +51,7 @@ app.post("/processedData", (request, response) => {
     })
 });
 
+//https://www.htmlcsscolor.com/hex/9BA17B
 app.get("/query", (request, response) => {
     /* renders lookup.ejs and passes form action */
 	let formAction = `${siteUrl}/queryResult`;
@@ -129,7 +130,7 @@ async function calculateBMI (data) {
     let height = parseInt(data.height1)*12 + parseInt(data.height2);
     if (data.unit === "metric") {
         height = parseFloat(data.height1)/100;
-        delete data.height2;
+        console.log(data.height2)
     }
     
     /* add 'height' property to data */
@@ -203,9 +204,9 @@ async function updateProfile (data) {
 }
 
  function getData(data){
-    let answer = "<table>";
+    let answer = "<table border = '2'><tr><th>Title</th><th>Link</th></tr>";
     data.forEach(element => {
-        answer += "<tr><td><a href='" + element.link + "'>" + element.title + "</a></td></tr>";
+        answer += "<tr><td>" + element.title + "</td><td>" + element.link  + "</td></tr>";
     });
     answer += "</table>"
     
