@@ -82,13 +82,13 @@
             <br><br>
             <strong>Height:</strong>
                 <input type="number" name="height1" id="height1" value="<%- height1 %>" min="1" max="900" readonly> <span id="h1">ft</span>
-            &nbsp;<span id="h2"><input type="number" name="height2" id="height2" value="" min="0" max="11" readonly> in</span>
+            &nbsp;<span id="h2"><input type="number" name="height2" id="height2" value="<%- height2 %>" min="0" max="11" readonly> in</span>
             <br><br>
             <!-- for distinguishing b/w updates and new insertions -->
             <input type="hidden" name="flag" value="update">
             <input type="button" value="Update Data" id="updateBtn" onclick="updateData()"> &nbsp;
             <input type="submit" value="Submit Update" id="submit"> &nbsp;
-            <input type="button" value="Cancel Update" id="cancel" onclick="cancelUpdate()">
+            <input type="reset" value="Cancel Update" id="cancel" onclick="cancelUpdate()">
         </fieldset>
         <br>
         <fieldset>
