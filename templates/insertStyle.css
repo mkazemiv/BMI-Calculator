@@ -1,0 +1,100 @@
+body {
+   background-color: #F6F7F4;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(2px);
+}
+
+#hImg {
+    margin-left: 3em;
+    height: 650px;
+    width: 550px;
+}
+
+.d1 {
+    float: left; 
+    margin-top: 3em;
+}
+
+#d2 {
+    float: left; 
+    margin-top: 4em;
+    margin-left: 6em;
+    background-image: linear-gradient(#D6D9C9, #DEE1D4);
+    width: 550px;
+    height: 650px;
+    border-radius: 10px;
+}
+
+#d2:hover {
+    border: 2px dashed #9BA17B;
+}
+
+#f1 {
+    margin-left: 4em;
+    
+}
+#main1 {
+    display: flex;
+    background-color: #BFC3AA;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: 7em;
+}
+
+img {
+    --color: #63674E; /* the border color */
+    --border: 10px;   /* the border thickness*/
+    --offset: 20px;   /* control the offset*/
+    --gap: 5px;       /* the gap on hover */
+    
+    --_c: var(--color) var(--border), #0000 0 calc(100% - var(--border)),var(--color) 0;
+    --_o: calc(3*var(--offset));
+    padding: 
+      calc(var(--gap) + var(--border))
+      calc(var(--gap) + var(--border) + var(--offset))
+      calc(var(--gap) + var(--border) + var(--offset))
+      calc(var(--gap) + var(--border));
+    background: 
+      linear-gradient(      var(--_c)) var(--_o) var(--_o), 
+      linear-gradient(90deg,var(--_c)) var(--_o) var(--_o);
+    background-size: calc(100% - var(--_o)) calc(100% - var(--_o));
+    background-repeat: no-repeat;
+    filter: grayscale(.4);
+    transition: .5s;
+    cursor: pointer;
+  }
+  img:hover {
+    background-position: 0px 0px;
+    background-size: calc(100% - var(--offset)) calc(100% - var(--offset));
+    filter: grayscale(0);
+  }
+
+  input[type=text], input[type=email] {
+      border-radius: 20px;
+      border: 2px solid #BFC3AA;
+      height: 2.5em;
+      width: 25em;
+      background-color: #F4F5F1;
+  }
+  input[type=radio], input[type=number] {
+    height: 1.6em;
+    width: 5em;
+  }
+
+  input[type=reset], input[type=submit] {
+      margin-top: 1em;
+    border-radius: 20px;
+    border: 2.5px solid #9BA17B;
+    height: 3em;
+    width: 12em;
+    background-color: #BFC3AA;
+  }
+  
+
+  label {
+      color: #3F4232;
+      font-size: 1.1em;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+

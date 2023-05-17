@@ -9,9 +9,10 @@ const app = express(); /* app is a request handler function */
 const bodyParser = require("body-parser"); /* handles post parameters */
 app.use(bodyParser.urlencoded({extended:false}));
 app.set("views", path.resolve(__dirname, "templates")); /* ejs templates dir */
+app.use('/templates', express.static('templates'));
 app.set("view engine", "ejs"); /* view/templating engine */
 require("dotenv").config({ path: path.resolve(__dirname, '.env') })
-const portNumber = 5000;
+const portNumber = 5001;
 const username = process.env.MONGO_DB_USERNAME;
 const password = process.env.MONGO_DB_PASSWORD;
 const databaseAndCollection = {db: process.env.MONGO_DB_NAME, collection: process.env.MONGO_COLLECTION};
@@ -19,6 +20,9 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = `mongodb+srv://${username}:${password}@cluster0.abikxxc.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 const siteUrl = "https://bmi-calculator-6i9h.onrender.com";
+const googleSrch = require('google-search-results-nodejs');
+const gClient = new googleSrch.GoogleSearch("be2d12fd45489604da510a851b7527a6ec4f054e61009e82f9659fc76089fb1c"); // change this
+
 
 app.get("/", (request, response) => {
     /* renders the home page: index.ejs */
@@ -49,6 +53,34 @@ app.get("/query", (request, response) => {
 	response.render("review", { formAction });
 });
 
+app.get("/searchPage", (request, response) => {
+    /* renders insert.ejs and passes form action */
+	let formAction = `"${siteUrl}/searchResults"`;
+	response.render("searchPage", { formAction });
+});
+
+app.post("/searchPage", (request, response) => {
+    /* renders processed.ejs and processes form data */
+	const queryParams = {
+        q: request.body.sQuery,
+        engine: "google",
+    };
+    let a;
+    const callback = function(data) {
+        a = getData(data["organic_results"]);
+        let vars = {
+            searchData : a
+        };
+        response.render("searchResult", vars);
+      };
+    gClient.json(queryParams, callback);
+      /* console.log(a);
+    let vars = {
+        searchData : a
+    };
+    response.render("searchResult", vars); */
+});
+
 app.post("/processQuery", async (request, response) => {
     /* renders queryResult.ejs and queries db */
 	let { name, email } = request.body;
@@ -77,6 +109,8 @@ app.post("/processQuery", async (request, response) => {
         await client.close()
     }
 });
+
+
 
 app.listen(portNumber);
 console.log("Web server is running");
@@ -155,6 +189,17 @@ async function updateData (data) {
 
     return data;
 }
+
+ function getData(data){
+    let answer = "<table>";
+    data.forEach(element => {
+        answer += "<tr><td><a href='" + element.link + "'>" + element.title + "</a></td></tr>";
+    });
+    answer += "</table>"
+    
+    return answer;
+    //console.log(data["organic_results"][0]);
+  };
 
 /*
 async function lookupData(data) {
