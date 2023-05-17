@@ -71,7 +71,7 @@ app.post("/queryResult", async (request, response) => {
                                    .findOne(filter);
         if (!result)
             /* if no result was found then render error.ejs */
-            response.render("error", { flag: "std error" });
+            response.render("error", {});
         else {
             /* otherwise, render profile.ejs with the user's info and formAction in case of update */
             if (result.bmi == result.bmi.toFixed(1))
@@ -108,13 +108,13 @@ app.post("/confirmDelete", async (request, response) => {
                                    .findOne(filter);
         if (!result)
             /* if no result was found then render error.ejs */
-            response.render("error", { flag: "std error" });
+            response.render("error", {});
         else {
             /* otherwise, delete */
             await client.db(databaseAndCollection.db)
                         .collection(databaseAndCollection.collection)
                         .deleteOne(filter);
-            response.render("error", { flag: "deleted" });
+            response.render("error", {});
         }
     } catch (e) {
         console.error(e);

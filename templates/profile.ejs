@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title><%- name %>'s Profile</title>
+    <link rel="stylesheet" href="/templates/profileStyle.css" type="text/css">
     <script>
         function adjustFieldsUnits() {
             document.getElementById("submit").style.visibility = 'hidden';
@@ -57,55 +58,44 @@
 </head>
 
 <body onload="adjustFieldsUnits()">
+    <div id = "main0">
+    <div id = "m3">
+    <div class = "d5"><h3>YOUR BMI</h3></div>
+    <div class = "circle-wrap"><div id = "inner"><%- bmi %></div></div>
+    <br><br><br><br><br><br><br><br><br><br><br>
+    <div class = "d5"><h3>WEIGHT CATEGORY</h3></div>
+    <div class = "circle-wrap"><div id = "inner"><%- weightCategory %></div></div>
+    </div>
+    <div id = "prof1"><h2>YOUR PROFILE</h2></div>
+    <div id = "profileCard">
 	<h1>Hi, <%- name %> &#128075;</h1>
 
     <form action="<%- formAction %>" method="post" onsubmit="return submitUpdate()">
-        <fieldset>
-            <legend>
-                <strong>&nbsp; User Info &nbsp;</strong>
-            </legend>
 
-            <strong>Name:</strong> <input type="text" name="name" id="name" value="<%- name %>" disabled readonly>
+            <strong class = "pro1">Name</strong> <br><br><input type="text" name="name" id="name" value="<%- name %>" disabled readonly>
+            <br><br>
+            <strong class = "pro1">Email</strong> <br><br><input type="email" name="email" value="<%- email %>" readonly>
             <br>
-            <strong>Email:</strong> <input type="email" name="email" value="<%- email %>" readonly>
             <br>
-        </fieldset>
-        <br>
-        <fieldset>
-            <legend>
-                <strong>&nbsp; Physical Data <span id="upd"></span>&nbsp;</strong>
-            </legend>
             <!-- hidden unit field, in case of an update -->
             <input type="hidden" name="unit" id="unit" value="<%- unit %>">
-            <strong>Weight:</strong>
+            <strong class = "pro1">Weight:</strong><br><br>
                 <input type="number" name="weight" id="weight" value="<%- weight %>" min="1" max="600" readonly> <span id="wUnit">lb</span>
             <br><br>
-            <strong>Height:</strong>
+            <strong class = "pro1">Height:</strong><br><br>
                 <input type="number" name="height1" id="height1" value="<%- height1 %>" min="1" max="900" readonly> <span id="h1">ft</span>
             &nbsp;<span id="h2"><input type="number" name="height2" id="height2" value="<%- height2 %>" min="0" max="11" readonly> in</span>
             <br><br>
             <!-- for distinguishing b/w updates and new insertions -->
             <input type="hidden" name="flag" value="update">
-            <input type="button" value="Update Data" id="updateBtn" onclick="updateData()"> &nbsp;
+            <input type="button" value="Update Data" id="updateBtn" onclick="updateData()"> &nbsp; <button id = "bt1"><a href="/">Main Page</a></button>
             <input type="submit" value="Submit Update" id="submit"> &nbsp;
             <input type="reset" value="Cancel Update" id="cancel" onclick="cancelUpdate()">
-        </fieldset>
-        <br>
-        <fieldset>
-            <legend>
-                <strong>&nbsp; Body Mass Index Data &nbsp;</strong>
-            </legend>
             
-            <strong>BMI:</strong>
-                <input type="number" name="bmi" value="<%- bmi %>" readonly disabled>
-            <br><br>
-            <strong>Weight Category:</strong>
-                <input type="text" name="weightCategory" value="<%- weightCategory %>" readonly disabled>
-        </fieldset>
-    </form>
-    <br>
-    <hr>
-    <a href="/">HOME</a>
+        <br>
+        </form>
+        </div>
+        </div>
 </body>
 
 </html>
