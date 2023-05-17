@@ -1,10 +1,54 @@
 body {
-    background-color: #D6D9C9;
+    background-color: #8b8a63;
      background-repeat: no-repeat;
      background-size: cover;
-     backdrop-filter: blur(2px);
  }
 
+ #main3 {
+     display: flex;
+ }
+ #d5{
+     color:#D6D9C9;
+     height: 100em;
+     float : left;
+     width: 4em;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 2.7em;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: bold;
+ }
+ 
+ label {
+     margin-top: 10em;
+     margin-left: 5em;
+     font-size: 2em;
+     font-family: Arial, Helvetica, sans-serif;
+     color: #323528;
+ }
+ input[type = "text"] {
+    margin-left: 10em;
+     width: 25em;
+     height: 3em;
+     background-color: #EAECE4;
+ }
+
+ #sr1 {
+     float: left;
+    margin-top: 10em;
+    margin-left: 20em;
+     height: 300px;
+     width: 600px;
+     background-image: linear-gradient(#63674E, #F8F9F6);
+ }
+ input[type = "submit"] {
+     width: 10em;
+     height: 3em;
+     border-radius: 15px;
+     background-color: #D6D9C9;
+     margin-left: 17em;
+     border: 1px solid #4F523E;
+ }
 #main1 {
         display: flex;
     }
@@ -19,26 +63,68 @@ body {
     float: left;
     margin-left: 5em;
     margin-top: 5em;
+    border: 5px solid #e8e9e1;
+    height: 480px;
+    width: 550px;
 }
 
 img {
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: 2em;
     height: 400px;
     width: 450px;
 }
 
 table {
     background-color: #DEE1D4;
+    border: 3px solid #706f5e;
 }
 
-td {
+th, td {
+    border: 1px solid #9d9c7f;
     margin-top: 3em;
-    height : 10px;
+    height : 70px;
     width: 500px;
+    text-align: center;
+    
+}
+h2 {
+    text-align: center;
+}
+
+hr {
+    height: 3px;
+    background-image: linear-gradient(90deg,#e8e9e1, transparent);
+    border: 0;
+}
+#d6 {
+    margin-top: 4em;
+    margin-left: 7em;
+    width: 300px;
 }
 
 a {
-    color: #2E2F2D;
-    font-size: 1.2em;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #282a21;
+    font-size: 1.3em;
+    font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
+}
+
+button {
+    background-image: linear-gradient(90deg,#666a43, transparent);
+    width: 20em;
+    height: 3em;
+    border-radius: 15px;
+    border: 1px solid #8b8a63;
+}
+
+#bt1 {
+    background-image: linear-gradient(90deg,#666a43, transparent);
+    width: 20em;
+    height: 3em;
+    border-radius: 15px;
+    border: 1px solid #8b8a63;
+    margin-top: 2em;
+    margin-left: 12em;
 }

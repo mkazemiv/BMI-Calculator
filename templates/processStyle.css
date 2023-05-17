@@ -1,0 +1,32 @@
+body {
+    background-color: #d9d9c7;
+     background-repeat: no-repeat;
+     background-size: cover;
+ }
+
+ h1 {
+    color: #3e4122;
+    text-align: center;
+ }
+
+ #d1 {
+     margin-left: 25em;
+     margin-top: 4em;
+     height: 450px;
+     width: 600px;
+     background-color: #999d80;
+ }
+
+ #d2 {
+     margin-left: 2em;
+ }
+
+ ul {
+    list-style-type: none;
+  }
+
+  li {
+      font-family: Arial, Helvetica, sans-serif;
+      color:#d9d9c7;
+      font-size: 1.2em;
+  }

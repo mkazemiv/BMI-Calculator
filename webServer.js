@@ -51,7 +51,6 @@ app.post("/processedData", (request, response) => {
     })
 });
 
-//https://www.htmlcsscolor.com/hex/9BA17B
 app.get("/query", (request, response) => {
     /* renders lookup.ejs and passes form action */
 	let formAction = `${siteUrl}/queryResult`;
