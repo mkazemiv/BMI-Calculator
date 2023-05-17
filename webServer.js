@@ -204,9 +204,9 @@ async function updateProfile (data) {
 }
 
  function getData(data){
-    let answer = "<table>";
+    let answer = "<table border = '2'><tr><th>Title</th><th>Link</th></tr>";
     data.forEach(element => {
-        answer += "<tr><td><a href='" + element.link + "'>" + element.title + "</a></td></tr>";
+        answer += "<tr><td>" + element.title + "</td><td>" + element.link  + "</td></tr>";
     });
     answer += "</table>"
     
