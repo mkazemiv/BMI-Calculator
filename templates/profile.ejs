@@ -74,17 +74,17 @@
 
             <strong class = "pro1">Name</strong> <br><br><input type="text" name="name" id="name" value="<%- name %>" disabled readonly>
             <br><br>
-            <strong class = "pro1">Email</strong> <br><br><input type="email" name="email" value="<%- email %>" readonly>
+            <strong class = "pro1">Email</strong> <br><br><input type="email" name="email" value="<%- email %>">
             <br>
             <br>
             <!-- hidden unit field, in case of an update -->
             <input type="hidden" name="unit" id="unit" value="<%- unit %>">
             <strong class = "pro1">Weight:</strong><br><br>
-                <input type="number" name="weight" id="weight" value="<%- weight %>" min="1" max="600" readonly> <span id="wUnit">lb</span>
+                <input type="number" name="weight" id="weight" value="<%- weight %>" min="1" max="600"> <span id="wUnit">lb</span>
             <br><br>
             <strong class = "pro1">Height:</strong><br><br>
-                <input type="number" name="height1" id="height1" value="<%- height1 %>" min="1" max="900" readonly> <span id="h1">ft</span>
-            &nbsp;<span id="h2"><input type="number" name="height2" id="height2" value="<%- height2 %>" min="0" max="11" readonly> in</span>
+                <input type="number" name="height1" id="height1" value="<%- height1 %>" min="1" max="900"> <span id="h1">ft</span>
+            &nbsp;<span id="h2"><input type="number" name="height2" id="height2" value="<%- height2 %>" min="0" max="11"> in</span>
             <br><br>
             <!-- for distinguishing b/w updates and new insertions -->
             <input type="hidden" name="flag" value="update">
