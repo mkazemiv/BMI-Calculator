@@ -71,7 +71,7 @@ app.post("/queryResult", async (request, response) => {
                                    .findOne(filter);
         if (!result)
             /* if no result was found then render error.ejs */
-            response.render("error", {});
+            response.render("error", { flag: "std error" });
         else {
             /* otherwise, render profile.ejs with the user's info and formAction in case of update */
             if (result.bmi == result.bmi.toFixed(1))
@@ -108,13 +108,13 @@ app.post("/confirmDelete", async (request, response) => {
                                    .findOne(filter);
         if (!result)
             /* if no result was found then render error.ejs */
-            response.render("error", {});
+            response.render("error", { flag: "std error" });
         else {
             /* otherwise, delete */
             await client.db(databaseAndCollection.db)
                         .collection(databaseAndCollection.collection)
                         .deleteOne(filter);
-            response.render("error", {});
+            response.render("error", {flag: "deleted"});
         }
     } catch (e) {
         console.error(e);
@@ -174,7 +174,7 @@ async function calculateBMI (data) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'fba0d86acemsh1efba0a46fa7962p1c0da4jsn4d17ac47822c',
+            'X-RapidAPI-Key': '2ef1e07f77msh4b3d79815902ec9p17b208jsna599bfed8636',
             'X-RapidAPI-Host': 'body-mass-index-bmi-calculator.p.rapidapi.com'
         }
     }
