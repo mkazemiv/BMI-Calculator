@@ -1,0 +1,123 @@
+.color1 {color: #cac2a4;}
+.color2 {color: #d8d7be;}
+.color3 {color: #312d50;}
+.color4 {color: #75516d;}
+.color5 {color: #c7a6a9;}
+
+body {
+    background-image: linear-gradient(#D6D9C9, #F8F9F6);
+}
+#main1 {
+    display: flex;
+}
+
+#links {
+    float: left;
+    margin-left: 4rem; 
+    margin-top: 2em;
+}
+
+#title {
+    margin-left: 1em;
+    margin-top: 0.5em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3em;
+    color: #20221A;
+}
+
+hr {
+    height: 7px;
+    background-image: linear-gradient(90deg,#9BA17B, transparent);
+    margin-left: 1em;
+    border: 0;
+}
+
+hr:hover {
+    background-color: aliceblue;
+}
+
+#bmiImg {
+    margin-top: 1em;
+    margin-left: 1em;
+    height: 450px;
+    width: 450px;
+}
+
+#d1 {
+    float: left; 
+	--b: .5em; /* border width */
+	--c: 3em; /* corner size */
+	--r: 2em; /* corner rounding */
+	position: relative;
+	margin-top: 1em;
+    margin-left: 1em;
+	border: solid var(--b) transparent;
+	padding: 0.5em;
+	max-width: 23em;
+	font: 1.25em ubuntu, sans-serif;
+}
+	#d1::before {
+		position: absolute;
+		z-index: -1;
+		inset: calc(-1*var(--b));
+		border: inherit;
+		border-radius: var(--r);
+		background: linear-gradient(#d8d7be, #312d50, #312d50) border-box;
+		--corner: 
+			conic-gradient(from -90deg at var(--c) var(--c), red 25%, #0000 0) 
+				0 0/ calc(100% - var(--c))  calc(100% - var(--c)) border-box;
+		--inner: conic-gradient(red 0 0) padding-box;
+		-webkit-mask: var(--corner), var(--inner);
+		-webkit-mask-composite: source-out;
+						mask: var(--corner) subtract, var(--inner);
+		content: ''
+	}
+
+    img {
+        --color: #63674E; /* the border color */
+        --border: 10px;   /* the border thickness*/
+        --offset: 20px;   /* control the offset*/
+        --gap: 5px;       /* the gap on hover */
+        
+        --_c: var(--color) var(--border), #0000 0 calc(100% - var(--border)),var(--color) 0;
+        --_o: calc(3*var(--offset));
+        padding: 
+          calc(var(--gap) + var(--border))
+          calc(var(--gap) + var(--border) + var(--offset))
+          calc(var(--gap) + var(--border) + var(--offset))
+          calc(var(--gap) + var(--border));
+        background: 
+          linear-gradient(      var(--_c)) var(--_o) var(--_o), 
+          linear-gradient(90deg,var(--_c)) var(--_o) var(--_o);
+        background-size: calc(100% - var(--_o)) calc(100% - var(--_o));
+        background-repeat: no-repeat;
+        filter: grayscale(.4);
+        transition: .5s;
+        cursor: pointer;
+      }
+      img:hover {
+        background-position: 0px 0px;
+        background-size: calc(100% - var(--offset)) calc(100% - var(--offset));
+        filter: grayscale(0);
+      }
+      
+      .btn {
+        background-image: linear-gradient(#63674E, #F8F9F6);
+          border-radius: 10px;
+          
+          width: 30em;
+          height: 6em;
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 1em;
+      }
+
+      ul {
+        list-style-type: none;
+      }
+
+      a {
+          color: #323528;
+          font-size: 1.2em;
+          font-family: Arial, Helvetica, sans-serif;
+          text-decoration: none;
+      }

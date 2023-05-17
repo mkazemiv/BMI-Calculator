@@ -1,0 +1,44 @@
+body {
+    background-color: #D6D9C9;
+     background-repeat: no-repeat;
+     background-size: cover;
+     backdrop-filter: blur(2px);
+ }
+
+#main1 {
+        display: flex;
+    }
+
+#d1 {
+    float: left;
+    color: black;
+    margin-left: 5em;
+}
+
+#d2 {
+    float: left;
+    margin-left: 5em;
+    margin-top: 5em;
+}
+
+img {
+    height: 400px;
+    width: 450px;
+}
+
+table {
+    background-color: #DEE1D4;
+}
+
+td {
+    margin-top: 3em;
+    height : 10px;
+    width: 500px;
+}
+
+a {
+    color: #2E2F2D;
+    font-size: 1.2em;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-decoration: none;
+}
