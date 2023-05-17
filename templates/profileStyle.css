@@ -1,0 +1,139 @@
+#profileCard {
+    float: left;
+    height: 600px;
+    width: 600px;
+    background-image: linear-gradient(90deg, #afb0a8, #F8F9F6);
+    margin-left: 1em;
+    margin-top: 5em;
+}
+
+#main0 {
+    display: flex;
+}
+h2 {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 2em;
+    margin-top: 5em;
+    float : left;
+    width: 4em;
+    color:rgb(196, 197, 191);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#m3 {
+    float: left;
+    width: 300px;
+    height: 200px;
+}
+.circle-wrap {
+    float: left;
+    margin-left: 4em;
+    width: 200px;
+    height: 200px;
+    background: #bcc0b8;
+    border-radius: 50%;
+    border: 4px solid #82877c;
+  }
+
+  #inner {
+      text-align: center;
+      margin-top: 2.5em;
+      font-size: 2em;
+      color:#1c321d;
+      font-weight: bold;
+  }
+
+  .d5 {
+      margin-top: 5em;
+      margin-left: 7em;
+      font-size: 1em;
+  }
+h1 {
+    text-align: center;
+    color: #1c321d;
+}
+
+body {
+    animation: 10000ms ease-in-out infinite color-change;
+  }
+  
+  @keyframes color-change {
+    0% {
+      background-color: #8b8a63;
+    }
+    20% {
+      background-color: #7C8162;
+    }
+    40% {
+      background-color: #4F523E;
+    }
+    60% {
+      background-color: #282A20;
+    }
+    80% {
+      background-color: #7C8162;
+    }
+    100% {
+      background-color: #8b8a63;
+    }
+  }
+
+  .pro1 {
+      text-align: center;
+      color: #384738;
+      font-size: 1.2em;
+  }
+
+  form {
+      margin-left: 7em;
+  }
+
+  input[type="text"], input[type="email"] {
+    width: 15em;
+    height: 3em;
+    border-radius: 6px;
+    border: 1px solid #4F523E;
+  }
+
+  input[type="number"] {
+    width: 5em;
+    height: 3em;
+    border-radius: 6px;
+    border: 1px solid #4F523E;
+  }
+
+  #updateBtn {
+    margin-top: 1em;
+    width: 15em;
+    height: 3em;
+    border-radius: 5px;
+    background-image: linear-gradient(90deg,#989a83, transparent);
+    border: 1px solid #4F523E;
+    color: #384738;
+    font-size: 0.8em;
+}
+
+#d2 {
+    float: left;
+    height: 400px;
+    width: 600px;
+    background-image: linear-gradient(90deg, #afb0a8, #F8F9F6);
+    margin-top: 10em;
+    margin-left: 25em;
+}
+
+#bt1 {
+    background-image: linear-gradient(90deg,#989a83, transparent);
+    width: 15em;
+    height: 3em;
+    border-radius: 5px;
+    border: 1px solid #8b8a63;
+}
+
+a {
+    color: #282a21;
+    font-size: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
