@@ -4,6 +4,7 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Confirmation</title>
+    <link rel="stylesheet" href="/templates/processStyle.css" type="text/css">
     <script>
         function adjustUnits() {
             if ("<%- unit %>" === "metric") {
@@ -16,8 +17,8 @@
 </head>
 
 <body onload="adjustUnits()">
-	<h1>Data Submitted</h1>
-
+	<h1>REGISTRATION SUCCESSFUL</h1>
+    <div id = "d1"><div id = "d2">
 	<strong>Name:</strong> <%- name %><br>
     <strong>Email Address:</strong> <%- email %><br>
     <br>
@@ -26,8 +27,9 @@
     <br>
     <strong>BMI:</strong> <%- bmi %><br>
     <strong>Weight Category:</strong> <%- weightCategory %>
-    <hr>
     <a href="/">HOME</a>
+    </div>
+    </div>
 </body>
 
 </html>
