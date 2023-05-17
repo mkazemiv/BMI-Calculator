@@ -4,6 +4,31 @@ body {
     background-size: cover;
 }
 
+#main1 {
+    animation: 10000ms ease-in-out infinite color-change;
+  }
+  
+  @keyframes color-change {
+    0% {
+      background-color: #CCCFBB;
+    }
+    20% {
+      background-color: #AFB495;
+    }
+    40% {
+      background-color: #7C8162;
+    }
+    60% {
+      background-color: #4F523E;
+    }
+    80% {
+      background-color: #AFB495;
+    }
+    100% {
+      background-color: #CCCFBB;
+    }
+  }
+
 #hImg {
     margin-left: 3em;
     height: 650px;

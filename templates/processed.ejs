@@ -17,17 +17,21 @@
 </head>
 
 <body onload="adjustUnits()">
-	<h1>REGISTRATION SUCCESSFUL</h1>
+	<h1>PROFILE CREATED</h1>
+    <hr>
     <div id = "d1"><div id = "d2">
-	<strong>Name:</strong> <%- name %><br>
-    <strong>Email Address:</strong> <%- email %><br>
+        <br><br>
+        <ul>
+	<li><strong>Name:</strong> <%- name %></li><br>
+        <li><strong>Email Address:</strong> <%- email %></li><br>
     <br>
-    <strong>Weight:</strong> <%- weight %> <span id="wUnit">lb</span><br>
-    <strong>Height:</strong> <%- height1 %> <span id="hUnit">ft</span><span id="h2"></span><br>
+    <li><strong>Weight:</strong> <%- weight %> <span id="wUnit">lb</span></li><br>
+        <li><strong>Height:</strong> <%- height1 %> <span id="hUnit">ft</span><span id="h2"></span></li><br>
     <br>
-    <strong>BMI:</strong> <%- bmi %><br>
-    <strong>Weight Category:</strong> <%- weightCategory %>
-    <a href="/">HOME</a>
+    <li><strong>BMI:</strong> <%- bmi %></li><br>
+        <li><strong>Weight Category:</strong> <%- weightCategory %></li>
+        <br><br><br>
+        <div id = "bt1"><a href="/">Main Page</a></div>
     </div>
     </div>
 </body>
